@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8" />
+    <title layout:fragment="title">Seinfeld Fan Site</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Site styles -->
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" th:href="@{/}">Seinfeld Fan Site</a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Left side menu -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/characters}">Characters</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/episodes}">Episodes</a></li>
+
+
+                        <li class="nav-item"><a class="nav-link" th:href="@{/favorites}">Favorites</a></li>
+
+
+
+                        <li class="nav-item"><a class="nav-link" th:href="@{/quotes}">Quotes</a></li>
+
+                        <!-- Example admin-only items (uncomment when you set session.role) -->
+                        <!--
+          <li class="nav-item" th:if="${session.role == 'ADMIN'}">
+            <a class="nav-link" th:href="@{/admin/users}">Users</a>
+          </li>
+          <li class="nav-item" th:if="${session.role == 'ADMIN'}">
+            <a class="nav-link" th:href="@{/admin/stats}">Stats</a>
+          </li>
+          -->
+                    </ul>
+
+                    <!-- Right side auth area -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Guest: Login + Register -->
+                        <li class="nav-item" th:if="${session.username == null}">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.username == null}">
+                            <a class="nav-link" th:href="@{/register}">Register</a>
+                        </li>
+
+                        <!-- Signed-in: greeting + Logout -->
+                        <li class="nav-item d-flex align-items-center gap-2" th:if="${session.username != null}">
+                            <span class="navbar-text text-light">
+                                Hello, <span th:text="${session.username}">User</span>
+                            </span>
+                            <form th:action="@{/logout}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4" layout:fragment="content">
+        <!-- child pages inject their content here -->
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <p class="mb-0">© 2025 Seinfeld Fan Site</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

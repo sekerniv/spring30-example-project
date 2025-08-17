@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+<head>
+  <title layout:fragment="title">Episodes • Seinfeld Fan Site</title>
+  <style>
+    .ep {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ep img {
+      height: 48px;
+      width: auto;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <main layout:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1 class="mb-0">All Episodes</h1>
+
+      <!-- Season filter -->
+      <form th:action="@{/episodes}" method="get" class="d-flex align-items-center gap-2">
+        <label for="season" class="form-label mb-0">Season:</label>
+        <select id="season" name="season" class="form-select" style="width:auto" onchange="this.form.submit()">
+          <option th:selected="${selectedSeason == null}" value="">All</option>
+          <option th:each="s : ${seasons}" th:value="${s}" th:text="${s}"
+            th:selected="${selectedSeason != null and selectedSeason == s}">
+          </option>
+        </select>
+        <noscript>
+          <button class="btn btn-primary btn-sm" type="submit">Go</button>
+        </noscript>
+      </form>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Plot</th>
+            <th>Year</th>
+            <th>Season</th>
+            <th>Episode</th>
+            <th>Original Air Date</th>
+            <th>Votes</th>
+            <th style="width:1%;">Vote</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="e : ${episodes}">
+            <td class="ep">
+              <img th:src="@{'/images/episodes/' + ${e.imageFileName}}" th:alt="${e.title}">
+              <span th:text="${e.title}">Title</span>
+            </td>
+            <td th:text="${e.plot}">Plot</td>
+            <td th:text="${e.year}">1994</td>
+            <td th:text="${e.season}">5</td>
+            <td th:text="${e.episode}">14</td>
+            <td th:text="${e.originalAirDate}">1994-02-17</td>
+            <td th:text="${e.votes}">0</td>
+            <td>
+              <!-- If logged in: show POST button -->
+              <form th:if="${session.username != null}" th:action="@{/episodes/vote}" method="post" class="d-inline">
+                <input type="hidden" name="title" th:value="${e.title}">
+                <input type="hidden" name="season" th:value="${selectedSeason}">
+                <button type="submit" class="btn btn-sm btn-outline-primary">▲ Vote</button>
+              </form>
+
+              <!-- If not logged in: link to login -->
+              <a th:if="${session.username == null}" th:href="@{/login}" class="btn btn-sm btn-outline-primary">▲
+                Vote</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+
+</html>

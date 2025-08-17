@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+      <title layout:fragment="title">Seinfeld Fan Site</title>
+</head>
+
+<body>
+      <main layout:fragment="content">
+
+            <div class="text-center mt-5">
+                  <h1>Welcome to the Seinfeld Fan Site</h1>
+                  <p class="lead">
+                        Enjoy random quotes, explore characters, and relive your favorite moments from the show.
+                  </p>
+            </div>
+
+            <div class="row mt-4 text-center">
+                  <div class="col-md-4 mb-3">
+                        <a href="/quotes" class="btn btn-primary w-100">Random Quote</a>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                        <a href="/characters" class="btn btn-secondary w-100">Characters</a>
+                  </div>
+                  <div class="col-md-4 mb-3">
+                        <a href="/favorites" class="btn btn-success w-100">Favorite Episodes</a>
+                  </div>
+            </div>
+
+      </main>
+</body>
+
+</html>

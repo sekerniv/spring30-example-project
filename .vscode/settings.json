@@ -1,0 +1,6 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.defaultLaunchConfiguration": "Run Spring Boot + Browser",
+    "java.debug.settings.hotCodeReplace": "auto"
+}

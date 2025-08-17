@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+<head>
+  <title layout:fragment="title">Random Seinfeld Quote</title>
+</head>
+
+<body>
+  <main layout:fragment="content">
+
+    <div class="card shadow-sm quote-card mx-auto">
+      <div class="card-body">
+        <div class="d-flex gap-2 align-items-center mb-2">
+          <span class="badge text-bg-secondary episode-badge" th:text="${episode}">The Marine Biologist</span>
+        </div>
+
+        <div class="quote-text mb-3" th:text="${quote}">
+          "These pretzels are making me thirsty!"
+        </div>
+
+        <div class="speaker mb-4" th:text="${speaker}">
+          Kramer
+        </div>
+
+        <!-- Refreshes the whole page to get the next random quote -->
+        <a href="/quotes" class="btn btn-primary">Get another quote</a>
+      </div>
+    </div>
+
+    <p class="text-center text-muted mt-3">
+      Tip: Refresh the page or press the button for a new random quote.
+    </p>
+
+  </main>
+</body>
+
+</html>

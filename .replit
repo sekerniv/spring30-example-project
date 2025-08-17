@@ -1,0 +1,12 @@
+modules = ["java-graalvm22.3", "nix", "web"]
+run = "mvn -Dspring-boot.run.addResources=true spring-boot:run"
+
+[nix]
+channel = "stable-25_05"
+
+[deployment]
+run = ["sh", "-c", "mvn -Dspring-boot.run.addResources=true spring-boot:run"]
+
+[[ports]]
+localPort = 8080
+externalPort = 80

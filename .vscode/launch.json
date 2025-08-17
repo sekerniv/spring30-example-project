@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "java",
+        "name": "Run Spring Boot + Browser",
+        "request": "launch",
+        "mainClass": "proj.DemoApplication",
+        "projectName": "demo",
+        "args": "--server.port=8080",
+        "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "Tomcat started on port (\\d+)"
+        },
+        "preLaunchTask": "kill-8080"
+      }
+    ]
+  }
+  

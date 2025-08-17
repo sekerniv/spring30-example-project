@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{layout}">
+
+<head>
+  <title layout:fragment="title">Favorite Episodes • Seinfeld Fan Site</title>
+  <style>
+    /* tiny helper so the thumbs look neat; keep if you like */
+    .ep {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ep img {
+      height: 48px;
+      width: auto;
+      border-radius: 4px;
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div layout:fragment="content">
+    <h1>Top 10 Favorite Episodes</h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Episode</th>
+          <th>Plot</th>
+          <th>Year</th>
+          <th style="width: 1%;">Vote</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 1 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Contest.jpeg" alt="The Contest">
+            <span>The Contest</span>
+          </td>
+          <td>George makes a bet with Jerry, Kramer, and Elaine to see who can remain “master of his domain.”</td>
+          <td>1992</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 2 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Soup-Nazi.jpeg" alt="The Soup Nazi">
+            <span>The Soup Nazi</span>
+          </td>
+          <td>A strict soup vendor’s “No soup for you!” rules test the gang’s patience (and appetite).</td>
+          <td>1995</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 3 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Opposite.jpeg" alt="The Opposite">
+            <span>The Opposite</span>
+          </td>
+          <td>George decides to do the exact opposite of his instincts—with surprising results.</td>
+          <td>1994</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 4 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Marine-Biologist.jpeg" alt="The Marine Biologist">
+            <span>The Marine Biologist</span>
+          </td>
+          <td>George pretends to be a marine biologist and meets a beached whale.</td>
+          <td>1994</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 5 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Outing.jpeg" alt="The Outing">
+            <span>The Outing</span>
+          </td>
+          <td>A mistaken outing leads to the line “Not that there’s anything wrong with that.”</td>
+          <td>1993</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 6 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Puffy-Shirt.jpeg" alt="The Puffy Shirt">
+            <span>The Puffy Shirt</span>
+          </td>
+          <td>Jerry accidentally agrees to wear a ridiculous “puffy shirt” on live TV.</td>
+          <td>1993</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 7 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Bizarro-Jerry.jpeg" alt="The Bizarro Jerry">
+            <span>The Bizarro Jerry</span>
+          </td>
+          <td>Elaine discovers a “bizarro” friend group that mirrors Jerry &amp; co., complete with “man-hands.”</td>
+          <td>1996</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 8 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Merv-Griffin-Show.jpeg" alt="The Merv Griffin Show">
+            <span>The Merv Griffin Show</span>
+          </td>
+          <td>Kramer resurrects a talk-show set in his apartment; Jerry gets into… toy-related ethics.</td>
+          <td>1997</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 9 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Junior-Mint.jpeg" alt="The Junior Mint">
+            <span>The Junior Mint</span>
+          </td>
+          <td>Jerry and Kramer drop a mint during surgery; Jerry struggles to remember “Dolores.”</td>
+          <td>1993</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+
+        <!-- 10 -->
+        <tr>
+          <td class="ep">
+            <img src="/images/fav_episodes/Seinfeld-The-Hamptons.jpeg" alt="The Hamptons">
+            <span>The Hamptons</span>
+          </td>
+          <td>The gang visits friends in the Hamptons; George faces the infamous “shrinkage” incident.</td>
+          <td>1994</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary" th:if="${session.username != null}" type="button">▲
+              Vote</button>
+            <a class="btn btn-sm btn-outline-primary" th:if="${session.username == null}" th:href="@{/login}">▲ Vote</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

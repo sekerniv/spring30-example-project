@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+<head>
+  <title layout:fragment="title">Register</title>
+</head>
+
+<body>
+  <main layout:fragment="content">
+
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h1 class="h4 mb-3 text-center">Create your account</h1>
+
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}">There were validation errors</div>
+            <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+
+            <form id="registerForm" th:action="@{/register}" method="post" novalidate>
+              <!-- Full name -->
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Full name</label>
+                <input id="fullName" name="fullName" type="text" class="form-control" required minlength="2"
+                  th:value="${fullName}">
+                <div class="text-danger small" id="fullNameError"></div>
+              </div>
+
+              <!-- Email (type=text so students practice JS validation) -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="text" class="form-control" required th:value="${email}">
+                <div class="text-danger small" id="emailError"></div>
+              </div>
+
+              <!-- Date of birth -->
+              <div class="mb-3">
+                <label for="dob" class="form-label">Date of birth</label>
+                <input id="dob" name="dob" type="date" class="form-control" required th:value="${dob}">
+                <div class="text-danger small" id="dobError"></div>
+              </div>
+
+              <!-- Hobbies (multiple selection with checkmarks) -->
+              <fieldset class="mb-3">
+                <legend class="form-label mb-1">Hobbies (choose one or more)</legend>
+                <div class="row">
+                  <div class="col-6 col-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="hobbies" id="h1" value="Comedy">
+                      <label class="form-check-label" for="h1">Comedy</label>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="hobbies" id="h2" value="Baseball">
+                      <label class="form-check-label" for="h2">Baseball</label>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="hobbies" id="h3" value="Cooking">
+                      <label class="form-check-label" for="h3">Cooking</label>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="hobbies" id="h4" value="Reading">
+                      <label class="form-check-label" for="h4">Reading</label>
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="hobbies" id="h5" value="Running">
+                      <label class="form-check-label" for="h5">Running</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-danger small" id="hobbiesError"></div>
+              </fieldset>
+
+              <!-- Password + confirm -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" name="password" type="password" class="form-control" required minlength="6"
+                  maxlength="16">
+
+                <div class="text-danger small" id="passwordError"></div>
+              </div>
+
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" class="form-control" required>
+                <div class="text-danger small" id="confirmError"></div>
+              </div>
+
+              <!-- Terms -->
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="terms" name="terms">
+                <label class="form-check-label" for="terms">
+                  I accept the terms of use
+                </label>
+                <div class="text-danger small" id="termsError"></div>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button id="submitBtn" type="submit" class="btn btn-success" disabled>Create account</button>
+                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client-side validation -->
+    <script>
+      const form = document.getElementById('registerForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const termsCb = document.getElementById('terms');
+
+      // Disable/enable submit based on terms
+      function updateSubmitState() {submitBtn.disabled = !termsCb.checked;}
+      termsCb.addEventListener('change', updateSubmitState);
+      updateSubmitState();
+
+      // Clear error helper
+      function clearErrors() {
+        ['fullNameError', 'emailError', 'dobError', 'hobbiesError', 'passwordError', 'confirmError', 'termsError']
+          .forEach(id => {const el = document.getElementById(id); if (el) el.textContent = '';});
+      }
+
+      // Reset should also clear errors
+      form.addEventListener('reset', () => setTimeout(clearErrors, 0));
+
+      // Validate on submit
+      form.addEventListener('submit', function (e) {
+        clearErrors();
+        let ok = true;
+
+        // Full name: >= 2 chars (letters + spaces)
+        const fullName = document.getElementById('fullName').value.trim();
+        if (fullName.length < 2 || !/^[A-Za-zא-ת ]+$/.test(fullName)) {
+          ok = false;
+          document.getElementById('fullNameError').textContent =
+            'Full name must be at least 2 characters and contain only letters and spaces.';
+        }
+
+        // Email: letters/digits/_/- + @ + domain + dot + 2-3 chars (simple pattern for class)
+        const email = document.getElementById('email').value.trim();
+        const emailPattern = /^[A-Za-z][A-Za-z0-9_-]*@[A-Za-z0-9_-]+\.[A-Za-z0-9_-]{2,3}$/;
+        if (!emailPattern.test(email)) {
+          ok = false;
+          document.getElementById('emailError').textContent =
+            'Enter a valid email (letters/digits/_/-, must contain @ and a dot, end with 2-3 letters).';
+        }
+
+        // DOB: required & not in the future
+        const dob = document.getElementById('dob').value;
+        if (!dob) {
+          ok = false;
+          document.getElementById('dobError').textContent = 'Please select your date of birth.';
+        } else {
+          const d = new Date(dob);
+          const today = new Date(); today.setHours(0, 0, 0, 0);
+          if (d > today) {
+            ok = false;
+            document.getElementById('dobError').textContent = 'Date of birth cannot be in the future.';
+          }
+        }
+
+        // Hobbies: require at least one
+        const hobbiesChecked = Array.from(document.querySelectorAll('input[name="hobbies"]:checked'));
+        if (hobbiesChecked.length === 0) {
+          ok = false;
+          document.getElementById('hobbiesError').textContent = 'Choose at least one hobby.';
+        }
+
+        // Password rules: 6-16 chars, at least one letter and one digit
+        const password = document.getElementById('password').value;
+        const hasLetter = /[A-Za-z]/.test(password);
+        const hasDigit = /\d/.test(password);
+        if (password.length < 6 || password.length > 16 || !hasLetter || !hasDigit) {
+          ok = false;
+          document.getElementById('passwordError').textContent =
+            'Password must be 6-16 characters and include at least one letter and one number.';
+        }
+
+        // Confirm password
+        const confirm = document.getElementById('confirmPassword').value;
+        if (password !== confirm) {
+          ok = false;
+          document.getElementById('confirmError').textContent = 'Passwords do not match.';
+        }
+
+        // Terms must be checked (button is disabled, but double-check)
+        if (!termsCb.checked) {
+          ok = false;
+          document.getElementById('termsError').textContent = 'You must accept the terms to continue.';
+        }
+
+        if (!ok) e.preventDefault();
+      });
+    </script>
+
+  </main>
+</body>
+
+</html>
