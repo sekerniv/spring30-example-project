@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
-
 <head>
-    <title layout:fragment="title">Characters • Seinfeld Fan Site</title>
+  <title layout:fragment="title">Characters • Seinfeld Fan Site</title>
 </head>
-
 <body>
-    <div layout:fragment="content">
-        <h1>Main Characters</h1>
+<div layout:fragment="content">
+  <h1>Main Characters</h1>
 
-        <div class="characters">
-            <div class="character">
-                <img src="/images/jerry.jpg" alt="Jerry Seinfeld">
-                <h2>Jerry Seinfeld</h2>
-                <p>Comedian, neat freak, and master of observational humor.</p>
-            </div>
-
-            <div class="character">
-                <img src="/images/george.jpg" alt="George Costanza">
-                <h2>George Costanza</h2>
-                <p>Perpetually unemployed, neurotic, and full of schemes.</p>
-            </div>
-
-            <div class="character">
-                <img src="/images/elaine.jpg" alt="Elaine Benes">
-                <h2>Elaine Benes</h2>
-                <p>Witty, independent, and unapologetically herself.</p>
-            </div>
-
-            <div class="character">
-                <img src="/images/kramer.jpg" alt="Cosmo Kramer">
-                <h2>Kramer</h2>
-                <p>Jerry’s eccentric neighbor with wild ideas.</p>
-            </div>
+  <div class="row" id="characters">
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="character-card card">
+        <img src="/images/jerry.jpg" alt="Jerry Seinfeld" class="card-img-top">
+        <div class="card-body">
+          <h2 class="card-title">Jerry Seinfeld</h2>
+          <p class="card-text">Comedian, neat freak, and master of observational humor.</p>
         </div>
+      </div>
     </div>
-</body>
 
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="character-card card">
+        <img src="/images/george.jpg" alt="George Costanza" class="card-img-top">
+        <div class="card-body">
+          <h2 class="card-title">George Costanza</h2>
+          <p class="card-text">Perpetually unemployed, neurotic, and full of schemes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="character-card card">
+        <img src="/images/elaine.jpg" alt="Elaine Benes" class="card-img-top">
+        <div class="card-body">
+          <h2 class="card-title">Elaine Benes</h2>
+          <p class="card-text">Witty, independent, and unapologetically herself.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="character-card card">
+        <img src="/images/kramer.jpg" alt="Cosmo Kramer" class="card-img-top">
+        <div class="card-body">
+          <h2 class="card-title">Kramer</h2>
+          <p class="card-text">Jerry’s eccentric neighbor with wild ideas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
 </html>
