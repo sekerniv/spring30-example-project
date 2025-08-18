@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class EpisodesController {
 
-    // IMPORTANT: the user said the episodes are in seinfeld.db
+    
     private static final String DB_URL = "jdbc:sqlite:seinfeld.db";
 
-    // Simple DTO to pass to the template
+    
     public static class EpisodeRow {
         public String title;
         public String plot;
