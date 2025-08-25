@@ -17,4 +17,11 @@ public class ExampleController {
     public String bootstrapResponsiveGridExample(Model model, HttpSession session) {
         return "/examples/example_bootstrap_responsive_grid";
     }
+
+    @GetMapping("/example_bootstrap_form_register")
+    public String bootstrapFormRegisterExample(Model model, HttpSession session) {
+        return "/examples/example_bootstrap_form_register";
+    }
+
+
 }

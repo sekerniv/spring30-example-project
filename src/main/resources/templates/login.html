@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layout}">
+  layout:decorate="layout">
 
 <head>
   <title layout:fragment="title">Login</title>
@@ -18,7 +18,7 @@
             <div th:if="${error}" class="alert alert-danger" th:text="${error}">Invalid credentials</div>
             <div th:if="${message}" class="alert alert-info" th:text="${message}">Please sign in</div>
 
-            <form th:action="@{/login}" method="post" id="loginForm" novalidate>
+            <form action="/login" method="post" id="loginForm" novalidate>
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input id="email" name="email" type="text" class="form-control" required minlength="3" autofocus

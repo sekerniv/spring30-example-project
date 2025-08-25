@@ -15,9 +15,9 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" th:href="@{/}">Seinfeld Fan Site</a>
+                <a class="navbar-brand" href="/">Seinfeld Fan Site</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,38 +25,29 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <!-- Left side menu -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/characters}">Characters</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/episodes}">Episodes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/characters">Characters</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/episodes">Episodes</a></li>
 
 
-                        <li class="nav-item"><a class="nav-link" th:href="@{/favorites}">Favorites</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/favorites">Favorites</a></li>
 
 
 
-                        <li class="nav-item"><a class="nav-link" th:href="@{/quotes}">Quotes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/quotes">Quotes</a></li>
 
-                        <!-- Example admin-only items (uncomment when you set session.role) -->
-                        <!--
-          <li class="nav-item" th:if="${session.role == 'ADMIN'}">
-            <a class="nav-link" th:href="@{/admin/users}">Users</a>
-          </li>
-          <li class="nav-item" th:if="${session.role == 'ADMIN'}">
-            <a class="nav-link" th:href="@{/admin/stats}">Stats</a>
-          </li>
-          -->
+                        
                     </ul>
 
                     <!-- Right side auth area -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Guest: Login + Register -->
                         <li class="nav-item" th:if="${session.username == null}">
-                            <a class="nav-link" th:href="@{/login}">Login</a>
+                            <a class="nav-link" href="/login">Login</a>
                         </li>
                         <li class="nav-item" th:if="${session.username == null}">
-                            <a class="nav-link" th:href="@{/register}">Register</a>
+                            <a class="nav-link" href="/register">Register</a>
                         </li>
 
                         <!-- Signed-in: greeting + Logout -->
